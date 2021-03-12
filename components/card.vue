@@ -1,5 +1,17 @@
 <template>
   <div>
+
+    <div
+      v-for="(item, key) in subjects"
+      :key="key"
+    >
+      <a :href="'/category?type=' + item.type">
+        {{ item.name }} : {{ item.type }}
+      </a>
+    </div>
+    <v-divider/>
+    <br/>
+
     <div
       v-for="(item, key) in subjects"
       :key="key"
