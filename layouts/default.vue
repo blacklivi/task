@@ -5,7 +5,6 @@
       fixed
       app
     >
-      Online market
       <div class="text-right">
         <v-menu
           open-on-hover
