@@ -5,7 +5,11 @@
       fixed
       app
     >
-      <div class="text-right">
+      <nuxt-link
+        class="text-right"
+        to="/megatop/basket"
+      >
+      <div>
         <v-menu
           open-on-hover
           offset-y
@@ -13,6 +17,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
+              class="myBtn"
               color="primary"
               dark
               v-bind="attrs"
@@ -30,18 +35,22 @@
                 {{ item.name }}
               </v-list-item-title>
               <v-list-item-action>
-                <v-btn icon>
-                  <v-icon color="grey lighten-1">mdi-information</v-icon>
+                <v-btn
+                  icon
+                  @click="deleteItem(index)"
+                >
+                  <v-icon color="red lighten-1">mdi-close</v-icon>
                 </v-btn>
               </v-list-item-action>
             </v-list-item>
           </v-list>
         </v-menu>
       </div>
+      </nuxt-link>
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt />
+        <nuxt/>
       </v-container>
     </v-main>
     <v-footer
@@ -55,11 +64,28 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       clipped: false,
       fixed: false,
     }
+    },
+  methods: {
+    deleteItem (x) {
+      this.$store.commit('deleteFromCard', this.$store.state.cart[x])
+    }
   }
 }
 </script>
+
+<style lang="scss">
+.text-right {
+  margin-left: auto;
+}
+
+.myBtn {
+  background: #2d81d6;
+  border-radius: 24px;
+  opacity: 0.6;
+}
+</style>
